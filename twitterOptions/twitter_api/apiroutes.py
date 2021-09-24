@@ -19,7 +19,14 @@ def post_tweet():
 def update_tweet():
     return {"message": "retweet tweet successfully"}
 
-
+# Author- Pratiksha (implement delete tweet)
 @twitter_api_blueprint.route('/delete', methods=['DELETE'])
-def delete():
+def delete(bearer_token,tweetId):
+        headers = {
+            'Authorization': "Bearer".format(bearer_token)
+        }
+        response = requests.request(method="DELETE", url="https://api.twitter.com/2/users/{}".format(tweetId),
+                                    headers=headers)
+        if response.status_code == 401:
+            return False
     return {"message": "Delete Re-tweet successfully"}
