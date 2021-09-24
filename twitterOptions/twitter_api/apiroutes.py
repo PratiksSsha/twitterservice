@@ -41,5 +41,14 @@ def update_tweet():
 
 
 @twitter_api_blueprint.route('/delete', methods=['DELETE'])
-def delete():
-    return {"message": "Delete Re-tweet successfully"}
+def delete(bearer_token,tweetId):
+    headers = {
+            'Authorization': "Bearer".format(bearer_token)
+        }
+        response = requests.request(method="DELETE", url="https://api.twitter.com/2/users/{}".format(tweetId),
+                                    headers=headers)
+        if response.status_code == 401:
+            return False
+	return {"message": "Delete tweet successfully"}
+    
+   
