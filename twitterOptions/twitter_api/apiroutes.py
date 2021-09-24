@@ -39,7 +39,7 @@ def post_tweet():
 def update_tweet():
     return {"message": "retweet tweet successfully"}
 
-
+#Author-Mayuri
 @twitter_api_blueprint.route('/delete', methods=['DELETE'])
 def delete():
     return {"message": "Delete Re-tweet successfully"}
